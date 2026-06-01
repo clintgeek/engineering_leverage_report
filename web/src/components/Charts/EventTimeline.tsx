@@ -21,10 +21,10 @@ export const EventTimeline: React.FC<EventTimelineProps> = ({ timeline }) => {
             <div key={event.id} className={`timeline-item ${idx % 2 === 0 ? 'left' : 'right'}`}>
               <div className="timeline-dot"></div>
               
-              <div className="glass-card timeline-card">
+              <div className="timeline-entry">
                 <span className="timeline-date">{event.date}</span>
                 <h3 className="timeline-title">{event.title}</h3>
-                {event.category && <span className="timeline-badge">{event.category}</span>}
+                {event.category && <span className="timeline-meta">{event.category}</span>}
                 <p className="timeline-description">{event.description}</p>
               </div>
             </div>

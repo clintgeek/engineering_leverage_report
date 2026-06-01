@@ -1,6 +1,8 @@
 {
   "author": "Clint Crocker",
-  "title": "Engineering Leverage Report",
+  "title": "Scaling Engineering Through AI",
+  "subtitle": "Over the last 12 months I focused on increasing engineering leverage rather than increasing hours. The result was faster delivery, faster learning, and repeatable workflows that scale beyond a single engineer.",
+  "reportLabel": "Engineering Notes",
   "version": "1.0.0",
   "lastUpdated": "2026-06-01",
   "brand": "CLINT GEEK",

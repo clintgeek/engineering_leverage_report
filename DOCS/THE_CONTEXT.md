@@ -21,5 +21,7 @@ This is a living document to be freely edited by human or AI. Its goal is to kee
 * **Web Quality Checks**: Run `npm run test`, `npm run lint`, and `npm run build` within `/web` for static compilation and quality check.
 
 ### Active Progress State
-* **Phases 1-7 Completed**: Scaffolding, containerization setup, frontend components, Nivo charts/visualizations, vertical timeline, and full JSON migration for dynamic content rendering.
-* **Next Stage**: Phase 8 (AI Workflow Documentation).
+* **Phases 1-9 Completed**: Scaffolding, containerization setup, frontend components, Nivo charts/visualizations, vertical timeline, full JSON migration for dynamic content rendering, AI workflow documentation, and Playwright PDF export.
+* **Current Stage**: Iteration 3 - Engineer's Notebook framing.
+* **Latest Recovery Work**: Restored the interrupted narrative polish after an app crash by completing hero metadata, leverage event copy, curated leverage summary cards, a before/after AI-assisted engineering chart, key milestones, responsive styling, and aligned tests. Full validation, frontend tests, lint, build, and PDF export passed as of 2026-06-01.
+* **Latest Direction Change**: Reframed the page away from an AI dashboard/product aesthetic and toward engineering notes for senior engineers. The report now emphasizes the repeatable AI workflow system, plain evidence, compact leverage facts, mini case studies, release-note milestones, and selected projects. The Lessons Learned section was removed from the frontend.

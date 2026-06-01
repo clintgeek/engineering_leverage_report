@@ -2,51 +2,51 @@
   {
     "id": "copilot-rollout",
     "title": "Copilot Organizational Rollout",
-    "category": "Enablement",
-    "timeframe": "Q3-Q4 2025",
-    "problem": "Copilot was rolled out to a 24-person engineering organization, but initial adoption and impact were limited because engineers needed structured workflows and guidance.",
-    "approach": "Created targeted training modules, built custom usage guidelines, configured team prompts, and established monthly sharing sessions.",
-    "outcome": "Substantial increase in active usage, and improved code consistency across development teams.",
-    "leverage": "Multiplied team capacity and fostered shared organizational knowledge."
+    "category": "Team Enablement",
+    "timeframe": "Q3–Q4 2025",
+    "problem": "A 24-person engineering org had Copilot access but limited adoption. Access alone wasn't producing results.",
+    "approach": "Built training, usage guidelines, custom team prompts, and ran monthly sharing sessions to establish shared patterns.",
+    "outcome": "Active usage increased substantially across the team. Code consistency improved before peer review.",
+    "leverage": "One engineer's workflow changes multiplied across 24 engineers."
   },
   {
     "id": "geeksuite",
-    "title": "GeekSuite Development",
-    "category": "Software Engineering",
+    "title": "GeekSuite — AI-Accelerated Delivery",
+    "category": "Software Delivery",
     "timeframe": "Q4 2025",
-    "problem": "Traditional estimates forecasted 12-18 months of part-time work to build a personal productivity platform spanning multiple integrated apps.",
-    "approach": "Leveraged advanced AI assistance for fast architectural design, prototyping, coding, and debugging.",
-    "outcome": "Delivered the majority of the core platform features within a few months of nights and weekends.",
-    "leverage": "Enabled solo developer velocity comparable to a small engineering team."
+    "problem": "A personal productivity platform spanning multiple apps and services. Traditional solo estimate: 12–18 months.",
+    "approach": "Used AI for architecture decisions, prototyping, debugging, and iteration — compressing the feedback loop at every stage.",
+    "outcome": "Core platform delivered in a few months of nights and weekends.",
+    "leverage": "Solo developer output comparable to a small team."
   },
   {
     "id": "python-acceleration",
     "title": "Python Learning Acceleration",
     "category": "Learning Velocity",
     "timeframe": "Q1 2026",
-    "problem": "Needed working proficiency in Python to build validation scripts and automation utilities rapidly.",
-    "approach": "Utilized AI model prompts as a virtual tutor, code reviewer, and pair programmer to explain language constructs in real time.",
-    "outcome": "Acquired high working proficiency in approximately 48 hours and built real, production-ready validation tools.",
-    "leverage": "Reduced learning curve time-to-delivery from weeks down to days."
+    "problem": "Needed working Python proficiency to build validation scripts and automation tools. No existing baseline.",
+    "approach": "Used AI as tutor, pair programmer, and code reviewer — explaining constructs in real time, not after the fact.",
+    "outcome": "Reached working proficiency in under 48 hours. Built production-ready tooling on day two.",
+    "leverage": "Learning cycle compressed from weeks to days."
   },
   {
     "id": "geekpr",
-    "title": "geekPR Code Review Tooling",
-    "category": "Automation",
+    "title": "geekPR — Automated Code Review",
+    "category": "Engineering Automation",
     "timeframe": "Q1 2026",
-    "problem": "PR reviews consumed significant engineering hours and frequently focused on repetitive lint/styling and basic design checks.",
-    "approach": "Created an automated first-pass pull request review agent that handles static analyses and styling verification.",
-    "outcome": "Reduced initial code review cycle time and improved code quality consistency before peer reviews.",
-    "leverage": "Automated low-complexity checks, freeing senior developer hours for complex logic reviews."
+    "problem": "PR reviews consumed engineering hours on repetitive, low-value checks — lint, style, basic design issues.",
+    "approach": "Built an automated first-pass review agent to handle static analysis before a human opens the PR.",
+    "outcome": "Reduced review cycle time. Senior developers now spend review time on logic, not formatting.",
+    "leverage": "Automated the repetitive. Reserved human attention for what matters."
   },
   {
     "id": "ai-workflow",
-    "title": "Structured AI Workflow Methodology",
+    "title": "Structured AI Workflow System",
     "category": "Process Optimization",
     "timeframe": "Continuous",
-    "problem": "Long AI developer conversations frequently lost context, resulting in code regressions and wasted compute tokens.",
-    "approach": "Implemented a rigid workspace document state workflow (THE_CONTEXT.md, THE_PLAN.md, THE_STEPS.md) to manage context boundaries.",
-    "outcome": "Consistent developer outputs and higher efficiency transitions between model sizes during implementation.",
-    "leverage": "Created a robust, repeatable developer loop that eliminates context rebuild steps."
+    "problem": "AI conversations lost context across sessions, causing regressions and redundant work.",
+    "approach": "Created a repeatable three-document workflow (THE_CONTEXT.md, THE_PLAN.md, THE_STEPS.md) to maintain durable project memory.",
+    "outcome": "Consistent outputs across models, sessions, and agents. Work resumable from any state.",
+    "leverage": "A repeatable process that scales beyond any single AI session or model."
   }
 ]

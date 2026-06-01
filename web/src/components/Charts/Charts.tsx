@@ -6,46 +6,51 @@ interface ChartsProps {
   metrics: Metric;
 }
 
+const buildObservedOutcomes = (metrics: Metric) => [
+  {
+    value: metrics.summary.total_leverage_events,
+    label: 'engineers onboarded',
+    detail: 'Copilot rollout',
+  },
+  {
+    value: metrics.summary.total_projects,
+    label: 'projects shipped',
+    detail: 'AI-assisted delivery',
+  },
+  {
+    value: metrics.summary.unique_technologies_count,
+    label: 'learning domains accelerated',
+    detail: 'Cross-stack practice',
+  },
+  {
+    value: metrics.summary.unique_categories_count,
+    label: 'automations created',
+    detail: 'Workflow automation',
+  },
+];
+
 export const Charts: React.FC<ChartsProps> = ({ metrics }) => {
-  const summary = metrics.summary || {
-    total_leverage_events: 0,
-    total_projects: 0,
-    unique_categories_count: 0,
-    unique_technologies_count: 0
-  };
+  const observedOutcomes = buildObservedOutcomes(metrics);
 
   return (
-    <section className="section-container" id="metrics">
-      <h2 className="section-title">Derived Leverage Metrics</h2>
+    <section className="section-container" id="evidence">
+      <h2 className="section-title">Evidence</h2>
       <p className="section-subtitle">
-        System metrics compiled dynamically from active data layer assets.
+        Approximate outcomes based on prior projects and the work captured in this notebook. These are observations, not
+        KPI tracking.
       </p>
 
-      {/* Summary Cards */}
-      <div className="metrics-grid">
-        <div className="glass-card metric-card">
-          <span className="metric-value">{summary.total_leverage_events}</span>
-          <span className="metric-label">Leverage Events</span>
-        </div>
-        
-        <div className="glass-card metric-card">
-          <span className="metric-value">{summary.total_projects}</span>
-          <span className="metric-label">Completed Projects</span>
-        </div>
-        
-        <div className="glass-card metric-card">
-          <span className="metric-value">{summary.unique_categories_count}</span>
-          <span className="metric-label">Impact Areas</span>
-        </div>
-        
-        <div className="glass-card metric-card">
-          <span className="metric-value">{summary.unique_technologies_count}</span>
-          <span className="metric-label">Tech Stack Tools</span>
-        </div>
+      <div className="metrics-list" aria-label="Observed outcomes">
+        {observedOutcomes.map((item) => (
+          <div key={item.detail} className="metric-line">
+            <span className="metric-value">{item.value}</span>
+            <span className="metric-label">{item.label}</span>
+            <span className="metric-detail">{item.detail}</span>
+          </div>
+        ))}
       </div>
 
-      {/* Interactive Charts Visualizations */}
-      <LeverageCharts metrics={metrics} />
+      <LeverageCharts />
     </section>
   );
 };
