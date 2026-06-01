@@ -8,43 +8,41 @@ interface LeverageEventsProps {
 export const LeverageEvents: React.FC<LeverageEventsProps> = ({ events }) => {
   return (
     <section className="section-container" id="events">
-      <h2 className="section-title">Major Leverage Events</h2>
+      <h2 className="section-title">Events</h2>
       <p className="section-subtitle">
-        Key case studies demonstrating high-impact engineering accomplishments, automation, and accelerated learning.
+        Notebook entries from the year where the workflow changed output in visible ways.
       </p>
-      
-      <div className="events-grid">
+
+      <div className="case-study-list">
         {events.map((event) => (
-          <div key={event.id} className="glass-card event-card">
-            <div className="event-card-header">
-              <span className="event-category">{event.category}</span>
-              <span className="event-timeframe">{event.timeframe}</span>
-            </div>
-            
-            <h3 className="event-title">{event.title}</h3>
-            
-            <div className="event-body">
-              <div className="event-field">
-                <span className="field-label">Problem:</span>
+          <article key={event.id} className="case-study">
+            <header className="case-study-header">
+              <div>
+                <p className="note-meta">{event.timeframe}</p>
+                <h3>{event.title}</h3>
+              </div>
+              <span>{event.category}</span>
+            </header>
+
+            <div className="case-study-body">
+              <section>
+                <h4>Problem</h4>
                 <p>{event.problem}</p>
-              </div>
-              
-              <div className="event-field">
-                <span className="field-label">Approach:</span>
+              </section>
+              <section>
+                <h4>Approach</h4>
                 <p>{event.approach}</p>
-              </div>
-              
-              <div className="event-field">
-                <span className="field-label">Outcome:</span>
+              </section>
+              <section>
+                <h4>Result</h4>
                 <p>{event.outcome}</p>
-              </div>
+              </section>
+              <section>
+                <h4>What Changed</h4>
+                <p>{event.leverage}</p>
+              </section>
             </div>
-            
-            <div className="event-leverage-highlight">
-              <span className="leverage-label">Leverage Created:</span>
-              <p>{event.leverage}</p>
-            </div>
-          </div>
+          </article>
         ))}
       </div>
     </section>

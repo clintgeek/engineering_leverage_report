@@ -8,36 +8,34 @@ interface ProjectsProps {
 export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   return (
     <section className="section-container" id="projects">
-      <h2 className="section-title">Open Source & Personal Projects</h2>
+      <h2 className="section-title">Projects</h2>
       <p className="section-subtitle">
-        Software projects built or optimized using AI pair-programming and modular automation tools.
+        Supporting evidence. The projects are proof that the workflow works beyond one conversation.
       </p>
 
       <div className="projects-list">
         {projects.map((project) => (
-          <div key={project.id} className="glass-card project-card">
-            <h3 className="project-title">{project.name}</h3>
-            <p className="project-description">{project.description}</p>
-            
-            <div className="project-tech-tags">
-              {project.technologies.map((tech) => (
-                <span key={tech} className="tech-badge">{tech}</span>
-              ))}
+          <article key={project.id} className="project-entry">
+            <div className="project-header">
+              <p className="note-meta">Project</p>
+              <h3 className="project-title">{project.name}</h3>
             </div>
-            
-            <div className="project-links">
+
+            <p className="project-description">{project.description}</p>
+
+            <div className="project-links" aria-label={`${project.name} links`}>
               {project.githubUrl && (
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
-                  GitHub Repository
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                  GitHub
                 </a>
               )}
               {project.websiteUrl && (
-                <a href={project.websiteUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                  Live Platform
+                <a href={project.websiteUrl} target="_blank" rel="noopener noreferrer">
+                  Live
                 </a>
               )}
             </div>
-          </div>
+          </article>
         ))}
       </div>
     </section>

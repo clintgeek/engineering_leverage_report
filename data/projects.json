@@ -2,7 +2,7 @@
   {
     "id": "geeksuite",
     "name": "GeekSuite",
-    "description": "A comprehensive personal productivity platform linking multiple core apps and shared service utilities.",
+    "description": "Multi-application platform built using AI-assisted development workflows.",
     "technologies": ["React", "TypeScript", "Node.js", "Docker", "PostgreSQL"],
     "githubUrl": "https://github.com/clintgeek/geeksuite",
     "websiteUrl": "https://geeksuite.clintgeek.com"
@@ -10,7 +10,7 @@
   {
     "id": "geekpr",
     "name": "geekPR",
-    "description": "Automated first-pass review agent for pull requests, reducing manual review latency and styling feedback loops.",
+    "description": "Automated pull request review tooling for first-pass engineering feedback.",
     "technologies": ["Python", "GitHub Actions", "Gemini API"],
     "githubUrl": "https://github.com/clintgeek/geekpr",
     "websiteUrl": ""
