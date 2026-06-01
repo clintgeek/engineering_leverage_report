@@ -215,6 +215,7 @@ Install:
 * pydantic
 * jsonschema
 * playwright
+* pytest
 
 Commit.
 
@@ -284,6 +285,23 @@ Commit.
 
 ---
 
+### Task 3.5 - Create Automated Tests
+
+Create:
+
+```text
+scripts/tests/
+```
+
+Write test suites (e.g., using `pytest`) to verify:
+* Schema validator catches missing fields, incorrect types, and invalid schemas.
+* Metrics generator correctly counts, aggregates, and transforms event metrics.
+* Build script runs without errors on valid data structures.
+
+Commit.
+
+---
+
 ## Phase 4 - React Data Models
 
 ### Goal
@@ -331,6 +349,18 @@ Responsibilities:
 
 * Load JSON.
 * Convert to typed models.
+
+Commit.
+
+---
+
+### Task 4.3 - Create Data Loading Layer Tests
+
+Install Vitest and setup test configurations in `web/`.
+
+Create unit tests verifying:
+* `dataLoader.ts` successfully retrieves and parses valid schema configurations.
+* Loader gracefully catches invalid, missing, or malformed JSON formats.
 
 Commit.
 
@@ -393,6 +423,18 @@ Commit.
 
 ---
 
+### Task 5.4 - Create Component Tests
+
+Configure React Testing Library in `web/`.
+
+Write test suites for core page containers (e.g., `Hero`, `ExecutiveSummary`, `WorkflowMethodology`) to verify:
+* Texts, headings, and description blocks render correctly.
+* Interactive components toggle correctly.
+
+Commit.
+
+---
+
 ## Phase 6 - Visualizations
 
 ### Goal
@@ -440,6 +482,16 @@ Display:
 * Python Learning
 * geekPR
 * Workflow Methodology
+
+Commit.
+
+---
+
+### Task 6.4 - Create Visualization Tests
+
+Write component tests for Nivo charts and timelines to verify:
+* Charts and grids render properly in the virtual DOM.
+* Timeline items correspond to input milestones.
 
 Commit.
 

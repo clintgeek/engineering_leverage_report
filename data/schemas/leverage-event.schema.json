@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LeverageEvent",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "category": { "type": "string" },
+    "timeframe": { "type": "string" },
+    "problem": { "type": "string" },
+    "approach": { "type": "string" },
+    "outcome": { "type": "string" },
+    "leverage": { "type": "string" }
+  },
+  "required": ["id", "title", "category", "timeframe", "problem", "approach", "outcome", "leverage"]
+}
