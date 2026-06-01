@@ -29,6 +29,11 @@ def main():
         print("Build failed at the metrics generation phase.")
         sys.exit(1)
         
+    # 3. Export PDF
+    if not run_script("export_pdf.py"):
+        print("Build failed at the PDF generation phase.")
+        sys.exit(1)
+        
     print("\n✓ Report build completed successfully!")
     sys.exit(0)
 

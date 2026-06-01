@@ -47,6 +47,16 @@ INVALID_EVENT_WRONG_TYPE = {
     "leverage": "Test leverage"
 }
 
+# Valid lessons learned mock
+VALID_LESSON = {
+    "title": "Test Title",
+    "description": "Test description of a lesson learned."
+}
+
+INVALID_LESSON_MISSING_KEY = {
+    "title": "Test Title"
+}
+
 @pytest.fixture
 def load_schemas():
     schema_dir = ROOT_DIR / "data" / "schemas"
@@ -57,24 +67,38 @@ def load_schemas():
     with open(schema_dir / "project.schema.json", "r") as f:
         project_schema = json.load(f)
         
-    return event_schema, project_schema
+    with open(schema_dir / "lessons-learned.schema.json", "r") as f:
+        lessons_schema = json.load(f)
+        
+    return event_schema, project_schema, lessons_schema
 
 def test_schema_valid_event(load_schemas):
-    event_schema, _ = load_schemas
+    event_schema, _, _ = load_schemas
     from jsonschema import validate
     validate(instance=VALID_EVENT, schema=event_schema)
 
 def test_schema_invalid_event_missing_key(load_schemas):
-    event_schema, _ = load_schemas
+    event_schema, _, _ = load_schemas
     from jsonschema import validate
     with pytest.raises(ValidationError):
         validate(instance=INVALID_EVENT_MISSING_KEY, schema=event_schema)
 
 def test_schema_invalid_event_wrong_type(load_schemas):
-    event_schema, _ = load_schemas
+    event_schema, _, _ = load_schemas
     from jsonschema import validate
     with pytest.raises(ValidationError):
         validate(instance=INVALID_EVENT_WRONG_TYPE, schema=event_schema)
+
+def test_schema_valid_lesson(load_schemas):
+    _, _, lessons_schema = load_schemas
+    from jsonschema import validate
+    validate(instance=VALID_LESSON, schema=lessons_schema)
+
+def test_schema_invalid_lesson_missing_key(load_schemas):
+    _, _, lessons_schema = load_schemas
+    from jsonschema import validate
+    with pytest.raises(ValidationError):
+        validate(instance=INVALID_LESSON_MISSING_KEY, schema=lessons_schema)
 
 def test_derived_metrics_calculations():
     # Test metrics compiler logic
@@ -107,17 +131,15 @@ def test_derived_metrics_calculations():
     assert tech_stack["TypeScript"] == 1
     assert tech_stack["Python"] == 1
 
-def test_build_report_execution():
+def test_metrics_generation():
+    """Verify that build_report.py successfully generates valid derived metrics JSON.
+    PDF export is tested separately in test_pdf_export.py."""
     import subprocess
     build_script = SCRIPTS_DIR / "build_report.py"
     
-    # Run build_report.py
     result = subprocess.run([sys.executable, str(build_script)], capture_output=True, text=True)
-    
-    # Assert successful orchestration run
     assert result.returncode == 0, f"build_report.py failed with: {result.stderr}"
     
-    # Verify the output file exists and is valid JSON
     generated_metrics_path = ROOT_DIR / "generated" / "metrics-derived.json"
     assert generated_metrics_path.exists()
     
