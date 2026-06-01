@@ -48,16 +48,23 @@ export const WorkflowMethodology: React.FC = () => {
               Establishes strategic goals, architecture designs, non-requirements, and success parameters. It is drafted using high-reasoning models to align outcomes before code is written.
             </p>
           </div>
-          
+
           <div className="glass-card explanation-card">
-            <h4>3. THE_STEPS.md</h4>
+            <h4>3. THE_ARCHITECTURE.md</h4>
             <p>
-              Translates plans into a granular checklist. Each task is defined with clear, isolated criteria so that smaller, faster models (the Squad) can execute them independently and cheaply.
+              Defines the long-term technical specifications, including system organization, layer boundaries, data flow, and technology choices. This document changes infrequently and guides execution integrity.
             </p>
           </div>
           
           <div className="glass-card explanation-card">
-            <h4>4. Execution Loop</h4>
+            <h4>4. THE_STEPS.md</h4>
+            <p>
+              Translates plans and architectures into a granular checklist. Each task is defined with clear, isolated criteria so that smaller, faster models (the Squad) can execute them independently and cheaply.
+            </p>
+          </div>
+          
+          <div className="glass-card explanation-card">
+            <h4>5. Execution Loop</h4>
             <p>
               Code changes are built task-by-task. Once a step compiles and passes unit tests, we update `THE_CONTEXT.md` to persist the state. This hierarchical pipeline maximizes quality while containing token costs.
             </p>

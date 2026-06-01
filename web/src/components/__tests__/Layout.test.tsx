@@ -107,6 +107,7 @@ describe('Component Layouts', () => {
     expect(screen.getByText('AI Workflow Methodology')).toBeDefined();
     expect(screen.getByText('THE_CONTEXT.md')).toBeDefined();
     expect(screen.getByText('THE_PLAN.md')).toBeDefined();
+    expect(screen.getByText(/THE_ARCHITECTURE.md/)).toBeDefined();
     expect(screen.getByText('THE_STEPS.md')).toBeDefined();
     expect(screen.getByText('Execution Loop')).toBeDefined();
   });
