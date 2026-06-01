@@ -1,1 +1,37 @@
-[]
+[
+  {
+    "id": "copilot-rollout",
+    "title": "Copilot Org Rollout",
+    "date": "July - Dec 2025",
+    "description": "Enablement training and organizational prompt structures deployed to 24 engineers.",
+    "category": "Enablement"
+  },
+  {
+    "id": "geeksuite",
+    "title": "GeekSuite Launch",
+    "date": "Oct - Dec 2025",
+    "description": "Completed core modular micro-services and productivity apps with AI assistance.",
+    "category": "Engineering"
+  },
+  {
+    "id": "python-acceleration",
+    "title": "Python Accelerated Acquisition",
+    "date": "January 2026",
+    "description": "Acquired working Python proficiency in under 48 hours for utility design.",
+    "category": "Learning"
+  },
+  {
+    "id": "geekpr",
+    "title": "geekPR Agent Deployment",
+    "date": "Feb - Mar 2026",
+    "description": "First-pass PR review automation engine deployed to Git hooks.",
+    "category": "Automation"
+  },
+  {
+    "id": "ai-workflow",
+    "title": "Context-Plan-Steps Workflow",
+    "date": "Continuous",
+    "description": "Standardized workspace file structures to ensure state continuity.",
+    "category": "Process"
+  }
+]

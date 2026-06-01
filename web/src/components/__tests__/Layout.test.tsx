@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Hero } from '../Hero/Hero';
 import { ExecutiveSummary } from '../ExecutiveSummary/ExecutiveSummary';
@@ -10,6 +10,26 @@ import { LessonsLearned } from '../LessonsLearned/LessonsLearned';
 import type { LeverageEvent } from '../../types/LeverageEvent';
 import type { Project } from '../../types/Project';
 import type { Metric } from '../../types/Metric';
+
+interface MockResponsiveBarProps {
+  data: Array<Record<string, string | number>>;
+  indexBy: string;
+  ariaLabel?: string;
+  role?: string;
+}
+
+// Mock @nivo/bar to avoid ResizeObserver/JSDOM rendering limitations
+vi.mock('@nivo/bar', () => ({
+  ResponsiveBar: ({ data, indexBy, ariaLabel, role }: MockResponsiveBarProps) => (
+    <div data-testid="mock-responsive-bar" aria-label={ariaLabel} role={role}>
+      {data.map((item) => (
+        <span key={String(item[indexBy])} data-testid="bar-item">
+          {String(item[indexBy])}
+        </span>
+      ))}
+    </div>
+  ),
+}));
 
 // Mock datasets for testing
 const MOCK_EVENTS: LeverageEvent[] = [
@@ -109,7 +129,8 @@ describe('Component Layouts', () => {
     expect(screen.getByText('5')).toBeDefined();  // total_projects
     expect(screen.getByText('3')).toBeDefined();  // unique_categories_count
     expect(screen.getByText('8')).toBeDefined();  // unique_technologies_count
-    expect(screen.getByText(/Nivo Charts Visualization Layer/i)).toBeDefined();
+    expect(screen.getByText('Impact Area Distribution')).toBeDefined();
+    expect(screen.getByText('Technology Stack Frequencies')).toBeDefined();
   });
 
   it('should render the LessonsLearned component', () => {
