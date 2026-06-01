@@ -10,6 +10,7 @@ import { LessonsLearned } from '../LessonsLearned/LessonsLearned';
 import type { LeverageEvent } from '../../types/LeverageEvent';
 import type { Project } from '../../types/Project';
 import type { Metric } from '../../types/Metric';
+import type { LessonLearned } from '../../types/LessonLearned';
 
 interface MockResponsiveBarProps {
   data: Array<Record<string, string | number>>;
@@ -66,6 +67,17 @@ const MOCK_METRICS: Metric = {
   categories: { "Automation": 10 },
   technologies: { "React": 8 }
 };
+
+const MOCK_LESSONS: LessonLearned[] = [
+  {
+    title: "Context Management is King",
+    description: "Unstructured chat buffers lead to model regressions. Maintaining a physical context boundary (durable files in the repository) ensures long-term development continuity."
+  },
+  {
+    "title": "Design for Validation",
+    "description": "When AI handles the boilerplate coding tasks, the engineer's primary duty shifts to validation. Robust testing suites and validation schemas must be built alongside the application code."
+  }
+];
 
 describe('Component Layouts', () => {
   it('should render the Hero component with expected title and metadata', () => {
@@ -134,7 +146,7 @@ describe('Component Layouts', () => {
   });
 
   it('should render the LessonsLearned component', () => {
-    render(<LessonsLearned />);
+    render(<LessonsLearned lessons={MOCK_LESSONS} />);
     expect(screen.getByText('Lessons Learned')).toBeDefined();
     expect(screen.getByText('Context Management is King')).toBeDefined();
     expect(screen.getByText('Design for Validation')).toBeDefined();

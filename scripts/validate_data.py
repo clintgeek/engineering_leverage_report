@@ -57,6 +57,10 @@ def main():
     if not validate_file("projects.json", "project.schema.json"):
         success = False
         
+    # Validate lessons learned
+    if not validate_file("lessons-learned.json", "lessons-learned.schema.json"):
+        success = False
+        
     if not success:
         print("Data validation failed!")
         sys.exit(1)
