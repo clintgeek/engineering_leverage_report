@@ -753,3 +753,112 @@ body {
   }
 }
 
+/* Print Optimization Stylesheet */
+@media print {
+  :root {
+    --bg-gradient: none !important;
+    --text-primary: #111015 !important;
+    --text-muted: #55535d !important;
+    --card-bg: #ffffff !important;
+    --card-border: #d2d1d6 !important;
+    --primary: #5900b3 !important;
+    --primary-glow: transparent !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #111015 !important;
+    font-size: 10pt;
+  }
+
+  .report-page-layout {
+    max-width: 100% !important;
+    padding: 1cm !important;
+  }
+
+  .report-content-body {
+    gap: 2.5rem !important;
+  }
+
+  /* Hide interactive/decorative assets */
+  .btn,
+  .hero-accent-bar,
+  .timeline-line {
+    display: none !important;
+  }
+
+  /* Print structure layouts */
+  .glass-card {
+    background: #ffffff !important;
+    border: 1px solid #d2d1d6 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    page-break-inside: avoid;
+  }
+
+  .timeline-card {
+    max-width: 100% !important;
+    border: 1px solid #d2d1d6 !important;
+  }
+
+  .timeline-wrapper {
+    margin: 1rem 0 !important;
+    padding: 0 !important;
+  }
+
+  .timeline-items {
+    gap: 1.25rem !important;
+  }
+
+  .timeline-item {
+    width: 100% !important;
+    left: 0 !important;
+    justify-content: flex-start !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .timeline-dot {
+    display: none !important;
+  }
+
+  /* Diagram flows */
+  .workflow-container {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .workflow-diagram {
+    padding: 1.5rem !important;
+    background: #f8f7fa !important;
+    border: 1px solid #d2d1d6 !important;
+    page-break-inside: avoid;
+  }
+  
+  .diagram-node {
+    background: #ffffff !important;
+    border-color: #d2d1d6 !important;
+  }
+
+  /* Chart sizes */
+  .charts-visualizations-layout {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1.5rem !important;
+    page-break-inside: avoid;
+  }
+
+  .chart-card-wrapper {
+    padding: 1rem !important;
+    background: #ffffff !important;
+  }
+
+  section {
+    page-break-inside: avoid;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #111015 !important;
+    page-break-after: avoid;
+  }
+}
+

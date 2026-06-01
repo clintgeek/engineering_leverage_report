@@ -48,3 +48,28 @@ Alternatively, use Docker Compose (which supports configuration via environment 
    ```bash
    docker compose up -d --build
    ```
+
+### Python Scripts Setup
+The validation, metrics generation, and PDF export scripts require a Python virtualenv.
+
+1. **Create the virtualenv and install dependencies**:
+   ```bash
+   cd scripts
+   python3 -m venv .venv
+   .venv/bin/pip install -r requirements.txt
+   ```
+
+2. **Install Playwright's Chromium browser** (required once per machine for PDF export):
+   ```bash
+   scripts/.venv/bin/playwright install chromium
+   ```
+
+3. **Run the full build pipeline** (validate data → compile metrics → export PDF):
+   ```bash
+   scripts/.venv/bin/python scripts/build_report.py
+   ```
+
+4. **Run the test suite**:
+   ```bash
+   scripts/.venv/bin/pytest
+   ```
