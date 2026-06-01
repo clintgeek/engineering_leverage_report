@@ -1,4 +1,5 @@
 import React from 'react';
+import { LeverageCharts } from './LeverageCharts';
 import type { Metric } from '../../types/Metric';
 
 interface ChartsProps {
@@ -43,14 +44,8 @@ export const Charts: React.FC<ChartsProps> = ({ metrics }) => {
         </div>
       </div>
 
-      {/* Charts Placeholder */}
-      <div className="glass-card chart-placeholder-card">
-        <div className="chart-placeholder-icon">📊</div>
-        <h4>Nivo Charts Visualization Layer</h4>
-        <p>
-          Category distribution and technology stack frequency charts will be compiled dynamically in Phase 6.
-        </p>
-      </div>
+      {/* Interactive Charts Visualizations */}
+      <LeverageCharts metrics={metrics} />
     </section>
   );
 };

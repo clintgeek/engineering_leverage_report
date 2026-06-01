@@ -6,13 +6,14 @@ import { WorkflowMethodology } from '../components/WorkflowMethodology/WorkflowM
 import { Projects } from '../components/Projects/Projects';
 import { LessonsLearned } from '../components/LessonsLearned/LessonsLearned';
 import { Charts } from '../components/Charts/Charts';
+import { EventTimeline } from '../components/Charts/EventTimeline';
 
 // DataLoader unified call
 import { getReportData } from '../services/dataLoader';
 
 export const ReportPage: React.FC = () => {
   // Single architectural call to fetch all data boundaries
-  const { events, projects, metrics, metadata } = getReportData();
+  const { events, projects, metrics, metadata, timeline } = getReportData();
 
   return (
     <div className="report-page-layout">
@@ -31,6 +32,8 @@ export const ReportPage: React.FC = () => {
         <Charts metrics={metrics} />
         
         <LeverageEvents events={events} />
+        
+        <EventTimeline timeline={timeline} />
         
         <WorkflowMethodology />
         
