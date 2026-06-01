@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getLeverageEvents, getProjects, getDerivedMetrics, getTimelineEvents } from '../dataLoader';
+import { getLeverageEvents, getProjects, getDerivedMetrics, getTimelineEvents, getReportData } from '../dataLoader';
 
 describe('dataLoader', () => {
   it('should successfully load leverage events with expected fields', () => {
@@ -65,5 +65,15 @@ describe('dataLoader', () => {
       expect(event.outcome).toBeTruthy();
       expect(event.leverage).toBeTruthy();
     });
+  });
+
+  it('should load unified report data matching contract interfaces', () => {
+    const data = getReportData();
+    expect(data.events).toBeDefined();
+    expect(data.projects).toBeDefined();
+    expect(data.metrics).toBeDefined();
+    expect(data.metadata).toBeDefined();
+    expect(data.metadata.brand).toBe('CLINT GEEK');
+    expect(data.metadata.copyrightOwner).toBe('Clint Crocker');
   });
 });
