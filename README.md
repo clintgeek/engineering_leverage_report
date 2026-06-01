@@ -36,3 +36,15 @@ To build and serve the application containerized on a private server:
      engineering-leverage-report
    ```
 
+### Docker Compose Deployment
+Alternatively, use Docker Compose (which supports configuration via environment variables or a `.env` file):
+
+1. **Optionally configure the port** by setting the `PORT` environment variable or creating a `.env` file at the root:
+   ```text
+   PORT=48273
+   ```
+
+2. **Start the service**:
+   ```bash
+   docker compose up -d --build
+   ```
