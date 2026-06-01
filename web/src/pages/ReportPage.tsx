@@ -13,7 +13,7 @@ import { getReportData } from '../services/dataLoader';
 
 export const ReportPage: React.FC = () => {
   // Single architectural call to fetch all data boundaries
-  const { events, projects, metrics, metadata, timeline } = getReportData();
+  const { events, projects, metrics, metadata, timeline, lessons } = getReportData();
 
   return (
     <div className="report-page-layout">
@@ -39,7 +39,7 @@ export const ReportPage: React.FC = () => {
         
         <Projects projects={projects} />
         
-        <LessonsLearned />
+        <LessonsLearned lessons={lessons} />
       </main>
 
       {/* Footer */}
