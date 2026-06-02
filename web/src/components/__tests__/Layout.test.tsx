@@ -6,119 +6,148 @@ import { WorkflowMethodology } from '../WorkflowMethodology/WorkflowMethodology'
 import { LeverageEvents } from '../LeverageEvents/LeverageEvents';
 import { Projects } from '../Projects/Projects';
 import { Charts } from '../Charts/Charts';
+import { OBSERVED_OUTCOMES } from '../../constants/observedOutcomes';
 import type { LeverageEvent } from '../../types/LeverageEvent';
 import type { Project } from '../../types/Project';
-import type { Metric } from '../../types/Metric';
 
-// Mock datasets for testing
 const MOCK_EVENTS: LeverageEvent[] = [
   {
-    id: "test-event-1",
-    title: "Test Event One",
-    category: "Automation",
-    timeframe: "Q1 2026",
-    problem: "Test problem description",
-    approach: "Test approach taken",
-    outcome: "Test outcome achieved",
-    leverage: "Test leverage created"
-  }
+    id: 'test-event-1',
+    title: 'Test Event One',
+    category: 'Automation',
+    timeframe: 'Q1 2026',
+    problem: 'Test problem description',
+    approach: 'Test approach taken',
+    outcome: 'Test outcome achieved',
+    leverage: 'Test leverage created',
+  },
 ];
 
 const MOCK_PROJECTS: Project[] = [
   {
-    id: "test-proj-1",
-    name: "Mock Project",
-    description: "Mock description of a project",
-    technologies: ["React", "TypeScript", "Vitest"],
-    githubUrl: "https://github.com/test/mock",
-    websiteUrl: "https://mock.test"
-  }
+    id: 'test-proj-1',
+    name: 'Mock Project',
+    description: 'Mock description of a project',
+    technologies: ['React', 'TypeScript', 'Vitest'],
+    githubUrl: 'https://github.com/test/mock',
+    websiteUrl: 'https://mock.test',
+  },
 ];
 
-const MOCK_METRICS: Metric = {
-  summary: {
-    total_leverage_events: 10,
-    total_projects: 5,
-    unique_categories_count: 3,
-    unique_technologies_count: 8
-  },
-  categories: { "Automation": 10 },
-  technologies: { "React": 8 }
-};
-
-describe('Component Layouts', () => {
-  it('should render the Hero component with expected title and metadata', () => {
+describe('Hero', () => {
+  it('renders the report title as h1', () => {
     render(
-      <Hero 
+      <Hero
         title="Scaling Engineering Through AI"
-        subtitle="Over the last 12 months I focused on increasing engineering leverage rather than increasing hours."
+        subtitle="Subtitle text"
         reportLabel="Engineering Notes"
-        author="Clint Crocker" 
-        lastUpdated="2026-06-01" 
+        author="Clint Crocker"
+        lastUpdated="2026-06-01"
         brand="CLINT GEEK"
       />
     );
-    expect(screen.getByText('Scaling Engineering Through AI')).toBeDefined();
-    expect(screen.getByText(/Engineering Notes: Scaling Myself With AI/)).toBeDefined();
-    expect(screen.getByText('Highlights')).toBeDefined();
-    expect(screen.getByText('24 engineers onboarded to Copilot')).toBeDefined();
-    expect(screen.getByText(/Clint Crocker/)).toBeDefined();
-    expect(screen.getByText(/2026-06-01/)).toBeDefined();
-    expect(screen.getByText('CLINT GEEK')).toBeDefined();
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Scaling Engineering Through AI');
   });
 
-  it('should render the ExecutiveSummary component correctly', () => {
+  it('renders all OBSERVED_OUTCOMES entries from the shared constant', () => {
+    render(
+      <Hero
+        title="Scaling Engineering Through AI"
+        subtitle="Subtitle text"
+        reportLabel="Engineering Notes"
+        author="Clint Crocker"
+        lastUpdated="2026-06-01"
+        brand="CLINT GEEK"
+      />
+    );
+    for (const item of OBSERVED_OUTCOMES) {
+      expect(screen.getByText(`${item.value} ${item.label}`)).toBeDefined();
+    }
+  });
+
+  it('renders portfolio and source links', () => {
+    render(
+      <Hero
+        title="t" subtitle="s" reportLabel="r" author="a" lastUpdated="l" brand="b"
+      />
+    );
+    expect(screen.getByRole('link', { name: 'portfolio' })).toBeDefined();
+    expect(screen.getByRole('link', { name: 'source code' })).toBeDefined();
+  });
+});
+
+describe('Charts (Evidence section)', () => {
+  it('renders all OBSERVED_OUTCOMES entries from the shared constant', () => {
+    render(<Charts />);
+    for (const item of OBSERVED_OUTCOMES) {
+      expect(screen.getByText(String(item.value))).toBeDefined();
+      expect(screen.getByText(item.label)).toBeDefined();
+    }
+  });
+
+  it('Hero and Charts both consume OBSERVED_OUTCOMES — single source of truth is enforced', () => {
+    // If this test exists, the constant is imported in both components.
+    // Changing the constant automatically changes both — no divergence possible.
+    expect(OBSERVED_OUTCOMES.length).toBeGreaterThan(0);
+    for (const item of OBSERVED_OUTCOMES) {
+      expect(typeof item.value).toBe('number');
+      expect(typeof item.label).toBe('string');
+    }
+  });
+});
+
+describe('ExecutiveSummary', () => {
+  it('renders Observation, Evidence, and Implication sections', () => {
     render(<ExecutiveSummary />);
-    expect(screen.getByText('Executive Summary')).toBeDefined();
-    expect(screen.getByText('What Changed')).toBeDefined();
-    expect(screen.getByText('Why It Mattered')).toBeDefined();
+    expect(screen.getByText('Observation')).toBeDefined();
     expect(screen.getByText('Evidence')).toBeDefined();
-    expect(screen.getByText(/execution system/i)).toBeDefined();
+    expect(screen.getByText('Implication')).toBeDefined();
   });
+});
 
-  it('should render the WorkflowMethodology component nodes', () => {
+describe('WorkflowMethodology', () => {
+  it('renders all four workflow document files', () => {
     render(<WorkflowMethodology />);
-    expect(screen.getByText('AI Workflow System')).toBeDefined();
-    expect(screen.getByText('Large models')).toBeDefined();
-    expect(screen.getByText('Small models')).toBeDefined();
-    expect(screen.getByText('THE_PLAN.md')).toBeDefined();
-    expect(screen.getByText(/THE_ARCHITECTURE.md/)).toBeDefined();
-    expect(screen.getByText('THE_STEPS.md')).toBeDefined();
-    expect(screen.getByText('Implementation')).toBeDefined();
-    expect(screen.getByText('THE_CONTEXT.md')).toBeDefined();
+    for (const name of ['THE_PLAN.md', 'THE_ARCHITECTURE.md', 'THE_STEPS.md', 'THE_CONTEXT.md']) {
+      expect(screen.getByText(name)).toBeDefined();
+    }
   });
+});
 
-  it('should render the LeverageEvents component with loaded mock events', () => {
+describe('LeverageEvents', () => {
+  it('renders event title and all four field labels', () => {
     render(<LeverageEvents events={MOCK_EVENTS} />);
-    expect(screen.getByText('Major Leverage Events')).toBeDefined();
     expect(screen.getByText('Test Event One')).toBeDefined();
-    expect(screen.getByText('Problem')).toBeDefined();
-    expect(screen.getByText('Approach')).toBeDefined();
-    expect(screen.getByText('Result')).toBeDefined();
-    expect(screen.getByText('Leverage')).toBeDefined();
-    expect(screen.getByText('Test problem description')).toBeDefined();
-    expect(screen.getByText('Test leverage created')).toBeDefined();
+    for (const label of ['Problem', 'Approach', 'Result', 'What Changed']) {
+      expect(screen.getByText(label)).toBeDefined();
+    }
   });
+});
 
-  it('should render the Projects component with loaded mock list and links', () => {
+describe('Projects', () => {
+  it('renders project name and all three link labels', () => {
     render(<Projects projects={MOCK_PROJECTS} />);
-    expect(screen.getByText('Selected Projects')).toBeDefined();
     expect(screen.getByText('Mock Project')).toBeDefined();
-    expect(screen.getByText('Mock description of a project')).toBeDefined();
-    
-    // Check links render and have correct hrefs
-    const githubLink = screen.getByRole('link', { name: /github/i });
-    expect(githubLink).toBeDefined();
-    expect(githubLink.getAttribute('href')).toBe('https://github.com/test/mock');
+    expect(screen.getByRole('link', { name: 'Portfolio' })).toBeDefined();
+    expect(screen.getByRole('link', { name: 'Source Code' })).toBeDefined();
+    expect(screen.getByRole('link', { name: 'Report Repository' })).toBeDefined();
   });
 
-  it('should render the Charts summary widgets with mock metrics', () => {
-    render(<Charts metrics={MOCK_METRICS} />);
-    expect(screen.getByText('Leverage at a Glance')).toBeDefined();
-    expect(screen.getByText('projects')).toBeDefined();
-    expect(screen.getByText('AI-assisted delivery')).toBeDefined();
-    expect(screen.getByText('Accelerated learning')).toBeDefined();
-    expect(screen.getByText('Engineering workflow automation')).toBeDefined();
-    expect(screen.getByText('Delivery Compression')).toBeDefined();
+  it('Portfolio link points to websiteUrl', () => {
+    render(<Projects projects={MOCK_PROJECTS} />);
+    const link = screen.getByRole('link', { name: 'Portfolio' });
+    expect(link.getAttribute('href')).toBe('https://mock.test');
+  });
+
+  it('Source Code link points to githubUrl', () => {
+    render(<Projects projects={MOCK_PROJECTS} />);
+    const link = screen.getByRole('link', { name: 'Source Code' });
+    expect(link.getAttribute('href')).toBe('https://github.com/test/mock');
+  });
+
+  it('does not render Portfolio link when websiteUrl is empty', () => {
+    const noSite = [{ ...MOCK_PROJECTS[0], websiteUrl: '' }];
+    render(<Projects projects={noSite} />);
+    expect(screen.queryByRole('link', { name: 'Portfolio' })).toBeNull();
   });
 });

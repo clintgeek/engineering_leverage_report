@@ -61,10 +61,33 @@ body {
 }
 
 .hero-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   color: var(--quiet);
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.hero-brand-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.hero-brand-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.78rem;
+  transition: color 0.15s;
+}
+
+.hero-brand-links a:hover {
+  color: var(--accent);
 }
 
 .hero-report-label {
@@ -753,42 +776,109 @@ body {
 @media print {
   :root {
     --bg: #ffffff;
-    --surface: #ffffff;
-    --surface-soft: #f4f4f4;
-    --line: #c8c8c8;
-    --line-soft: #dedede;
-    --text: #111111;
-    --muted: #444444;
-    --quiet: #666666;
-    --accent: #111111;
+    --surface: #f7f6f3;
+    --surface-soft: #f0ede8;
+    --line: #c4bfb8;
+    --line-soft: #d8d3cc;
+    --text: #1a1a18;
+    --muted: #3d3a35;
+    --quiet: #6b6660;
+    --accent: #8a6a2a;
+    --accent-soft: #f5efe3;
+    --font-sans: Georgia, 'Times New Roman', serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   }
 
   body {
     background: #ffffff;
-    color: #111111;
-    font-size: 10pt;
+    color: var(--text);
+    font-size: 9.5pt;
+    line-height: 1.5;
   }
 
   .report-page-layout {
     width: 100%;
-    padding: 1cm;
+    max-width: 100%;
+    padding: 0.6in 0.65in 0.6in;
   }
 
   .report-content-body {
-    gap: 1.75rem;
+    gap: 1.5rem;
   }
 
-  .hero-section,
-  .workflow-section,
+  /* Hero: serif title, compact */
+  .hero-section {
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
+    gap: 0.6rem;
+  }
+
+  .hero-title {
+    font-size: 28pt;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  .hero-brand-links a,
+  .hero-brand-links .meta-separator {
+    display: none;
+  }
+
+  .hero-highlights {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: none;
+  }
+
+  /* Sections */
+  .workflow-section {
+    border-top: 1px solid var(--line);
+  }
+
+  .section-title {
+    font-size: 15pt;
+    letter-spacing: -0.01em;
+  }
+
+  /* VS Code explorer: keep dark block for contrast */
+  .vscode-explorer {
+    background: #1a1a1a;
+    border: 1px solid #444;
+  }
+
+  .vscode-explorer-title { background: #111; color: #999; }
+  .vscode-explorer-root  { color: #e0e0e0; }
+  .vscode-file           { color: #c8c8c8; }
+  .vscode-file--active   { background: rgba(138, 106, 42, 0.2); color: #d7b56d; }
+  .vscode-file-note      { color: #555; }
+
+  /* Terminal artifacts: keep mono, quiet */
+  .hero-terminal { color: #888; }
+  .hero-terminal-output { color: var(--accent); }
+
+  /* Footer */
   .report-footer {
-    border-color: #c8c8c8;
+    border-top: 1px solid var(--line);
+    margin-top: 2rem;
   }
 
+  .footer-field-notes li { color: var(--muted); }
+  .footer-byline { color: var(--quiet); }
+  .footer-links { display: none; }
+
+  /* Page breaks */
   .section-container,
   .case-study,
   .project-entry,
   .workflow-section,
   .compression-chart {
     break-inside: avoid;
+  }
+
+  .hero-section { break-after: avoid; }
+
+  a[href]::after {
+    content: none;
   }
 }

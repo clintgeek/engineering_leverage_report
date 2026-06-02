@@ -4,7 +4,7 @@
     "name": "GeekSuite",
     "description": "Multi-application platform built using AI-assisted development workflows.",
     "technologies": ["React", "TypeScript", "Node.js", "Docker", "PostgreSQL"],
-    "githubUrl": "https://github.com/clintgeek/geeksuite",
+    "githubUrl": "https://github.com/clintgeek/GeekSuite",
     "websiteUrl": "https://geeksuite.clintgeek.com"
   },
   {
@@ -12,7 +12,7 @@
     "name": "geekPR",
     "description": "Automated pull request review tooling for first-pass engineering feedback.",
     "technologies": ["Python", "GitHub Actions", "Gemini API"],
-    "githubUrl": "https://github.com/clintgeek/geekpr",
+    "githubUrl": "https://github.com/clintgeek/GeekPR",
     "websiteUrl": ""
   }
 ]

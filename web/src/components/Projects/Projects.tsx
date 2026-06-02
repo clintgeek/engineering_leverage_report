@@ -24,16 +24,13 @@ export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
             <p className="project-description">{project.description}</p>
 
             <div className="project-links" aria-label={`${project.name} links`}>
-              {project.githubUrl && (
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                  GitHub
-                </a>
-              )}
               {project.websiteUrl && (
-                <a href={project.websiteUrl} target="_blank" rel="noopener noreferrer">
-                  Live
-                </a>
+                <a href={project.websiteUrl} target="_blank" rel="noopener noreferrer">Portfolio</a>
               )}
+              {project.githubUrl && (
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">Source Code</a>
+              )}
+              <a href="https://github.com/clintgeek/engineering_leverage_report" target="_blank" rel="noopener noreferrer">Report Repository</a>
             </div>
           </article>
         ))}

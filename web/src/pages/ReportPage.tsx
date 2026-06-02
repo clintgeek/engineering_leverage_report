@@ -29,7 +29,7 @@ export const ReportPage: React.FC = () => {
 
         <WorkflowMethodology />
 
-        <Charts metrics={metrics} />
+        <Charts />
 
         <LeverageEvents events={events} />
 

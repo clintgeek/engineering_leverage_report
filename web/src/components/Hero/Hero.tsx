@@ -1,4 +1,5 @@
 import React from 'react';
+import { OBSERVED_OUTCOMES } from '../../constants/observedOutcomes';
 
 interface HeroProps {
   title: string;
@@ -9,17 +10,17 @@ interface HeroProps {
   brand: string;
 }
 
-const OBSERVED_OUTCOMES = [
-  '24 engineers onboarded',
-  '2 projects shipped',
-  '5 leverage events documented',
-  '3 automations created',
-];
-
 export const Hero: React.FC<HeroProps> = ({ title, subtitle, reportLabel, author, lastUpdated, brand }) => {
   return (
     <header className="hero-section" id="hero">
-      <div className="hero-brand">{brand}</div>
+      <div className="hero-brand">
+        <span>{brand}</span>
+        <span className="hero-brand-links">
+          <a href="https://portfolio.clintgeek.com" target="_blank" rel="noopener noreferrer">portfolio</a>
+          <span className="meta-separator">/</span>
+          <a href="https://github.com/clintgeek/engineering_leverage_report" target="_blank" rel="noopener noreferrer">source code</a>
+        </span>
+      </div>
 
       <p className="hero-report-label">{reportLabel} // May 2025 – May 2026</p>
 
@@ -31,7 +32,7 @@ export const Hero: React.FC<HeroProps> = ({ title, subtitle, reportLabel, author
         <h2>Observed Outcomes</h2>
         <ul>
           {OBSERVED_OUTCOMES.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item.detail}>{item.value} {item.label}</li>
           ))}
         </ul>
       </div>

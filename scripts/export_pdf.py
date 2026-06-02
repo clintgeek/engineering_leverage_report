@@ -1,15 +1,17 @@
 """
 export_pdf.py
 
-Exports a PDF of the engineering leverage report by:
-  1. Serving the pre-built static frontend (web/dist) on a free local port.
-  2. Navigating to it with a headless Playwright Chromium browser.
-  3. Printing the page to PDF using the @media print stylesheet.
+Exports the engineering leverage report as:
+  - engineering-leverage-report.webp  (full-page screenshot, looks exactly like the site)
+  - engineering-leverage-report.pdf   (print layout via @media print)
+
+Both are written to /generated.
 
 Prerequisite: Playwright's Chromium browser must be installed once per machine:
   scripts/.venv/bin/playwright install chromium
 """
 import time
+import sys
 import socket
 import threading
 from http.server import SimpleHTTPRequestHandler
@@ -63,32 +65,37 @@ def main():
     
     # Ensure output directory exists
     GENERATED_DIR.mkdir(parents=True, exist_ok=True)
-    pdf_path = GENERATED_DIR / "engineering-leverage-report.pdf"
-    
+    pdf_path     = GENERATED_DIR / "engineering-leverage-report.pdf"
+    webp_path    = GENERATED_DIR / "engineering-leverage-report.webp"
+
     try:
         with sync_playwright() as p:
             print("Launching headless browser...")
             browser = p.chromium.launch(headless=True)
-            page = browser.new_page()
-            
-            url = f"http://127.0.0.1:{port}"
-            print(f"Navigating to local deployment at {url}...")
-            page.goto(url, wait_until="networkidle")
-            
-            # Wait for any visual animations or chart render adjustments to complete
-            print("Waiting for visual assets and animations to complete...")
+
+            # --- WebP screenshot: full-page, 1440px wide, dark site colours ---
+            print("Generating WebP screenshot...")
+            page = browser.new_page(viewport={"width": 1440, "height": 900})
+            page.goto(f"http://127.0.0.1:{port}", wait_until="networkidle")
             time.sleep(2.0)
-            
-            print(f"Generating PDF output at {pdf_path}...")
+            page.screenshot(path=str(webp_path), full_page=True, type="webp", quality=92)
+            print(f"✓ WebP saved to {webp_path}")
+            page.close()
+
+            # --- PDF: uses @media print stylesheet ---
+            print("Generating PDF...")
+            page = browser.new_page()
+            page.goto(f"http://127.0.0.1:{port}", wait_until="networkidle")
+            time.sleep(2.0)
             page.pdf(
                 path=str(pdf_path),
                 format="A4",
                 print_background=True,
                 margin={"top": "0.4in", "right": "0.4in", "bottom": "0.4in", "left": "0.4in"}
             )
-            
+            print(f"✓ PDF saved to {pdf_path}")
+
             browser.close()
-            print("✓ PDF generated successfully!")
             
     except Exception as e:
         print(f"✖ Generation failed: {str(e)}")

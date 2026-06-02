@@ -23,7 +23,7 @@ ROOT_DIR = SCRIPTS_DIR.parent
 
 
 def test_pdf_is_generated_by_build_pipeline():
-    """Run the full build pipeline and verify a non-empty PDF is written to disk."""
+    """Run the full build pipeline and verify a non-empty PDF and WebP are written to disk."""
     import subprocess
     build_script = SCRIPTS_DIR / "build_report.py"
 
@@ -37,6 +37,16 @@ def test_pdf_is_generated_by_build_pipeline():
         f"build_report.py failed.\n\nSTDOUT:\n{result.stdout}\n\nSTDERR:\n{result.stderr}"
     )
 
-    pdf_path = ROOT_DIR / "generated" / "engineering-leverage-report.pdf"
+    generated = ROOT_DIR / "generated"
+
+    pdf_path = generated / "engineering-leverage-report.pdf"
     assert pdf_path.exists(), f"Expected PDF not found at: {pdf_path}"
-    assert pdf_path.stat().st_size > 0, "PDF file exists but is empty — likely a render failure."
+    assert pdf_path.stat().st_size > 0, "PDF file exists but is empty."
+
+    webp_path = generated / "engineering-leverage-report.webp"
+    assert webp_path.exists(), f"Expected WebP not found at: {webp_path}"
+    assert webp_path.stat().st_size > 0, "WebP file exists but is empty."
+
+    html_path = generated / "engineering-leverage-report.html"
+    assert html_path.exists(), f"Expected single-file HTML not found at: {html_path}"
+    assert html_path.stat().st_size > 0, "HTML file exists but is empty."
