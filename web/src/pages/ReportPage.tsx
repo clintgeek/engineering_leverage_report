@@ -11,7 +11,7 @@ import { getReportData } from '../services/dataLoader';
 
 export const ReportPage: React.FC = () => {
   // Single architectural call to fetch all data boundaries
-  const { events, projects, metrics, metadata } = getReportData();
+  const { events, projects, metadata } = getReportData();
 
   return (
     <div className="report-page-layout">

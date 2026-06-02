@@ -7,7 +7,7 @@ A system of record and reporting platform demonstrating engineering leverage, le
 * `/data` - System of record (JSON data)
 * `/scripts` - Python validation and metrics generation scripts
 * `/web` - React / TypeScript / Vite presentation layer
-* `/generated` - Built static reports, charts, and PDF documents
+* `/generated` - Built static reports
 
 ## How to Run
 
@@ -50,7 +50,7 @@ Alternatively, use Docker Compose (which supports configuration via environment 
    ```
 
 ### Python Scripts Setup
-The validation, metrics generation, and PDF export scripts require a Python virtualenv.
+The validation, metrics generation, and HTML export scripts require a Python virtualenv.
 
 1. **Create the virtualenv and install dependencies**:
    ```bash
@@ -59,17 +59,12 @@ The validation, metrics generation, and PDF export scripts require a Python virt
    .venv/bin/pip install -r requirements.txt
    ```
 
-2. **Install Playwright's Chromium browser** (required once per machine for PDF export):
-   ```bash
-   scripts/.venv/bin/playwright install chromium
-   ```
-
-3. **Run the full build pipeline** (validate data → compile metrics → export PDF):
+2. **Run the full build pipeline** (validate data → compile metrics → build frontend → export HTML):
    ```bash
    scripts/.venv/bin/python scripts/build_report.py
    ```
 
-4. **Run the test suite**:
+3. **Run the test suite**:
    ```bash
    scripts/.venv/bin/pytest
    ```

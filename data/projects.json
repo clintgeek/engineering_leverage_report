@@ -14,5 +14,13 @@
     "technologies": ["Python", "GitHub Actions", "Gemini API"],
     "githubUrl": "https://github.com/clintgeek/GeekPR",
     "websiteUrl": ""
+  },
+  {
+    "id": "this-report",
+    "name": "This Report",
+    "description": "Engineering leverage report built to document a year of AI-assisted workflows. Includes a React frontend, Python build pipeline, and automated PDF and WebP export.",
+    "technologies": ["React", "TypeScript", "Python", "Playwright", "Vite"],
+    "githubUrl": "https://github.com/clintgeek/engineering_leverage_report",
+    "websiteUrl": "https://portfolio.clintgeek.com"
   }
 ]

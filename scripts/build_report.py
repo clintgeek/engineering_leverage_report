@@ -48,10 +48,6 @@ def main():
         print("Build failed at the frontend build phase.")
         sys.exit(1)
 
-    if not run_script("export_pdf.py"):
-        print("Build failed at the PDF generation phase.")
-        sys.exit(1)
-
     print("\n✓ Report build completed successfully!")
     sys.exit(0)
 

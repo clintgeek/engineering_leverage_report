@@ -30,7 +30,6 @@ export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
               {project.githubUrl && (
                 <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">Source Code</a>
               )}
-              <a href="https://github.com/clintgeek/engineering_leverage_report" target="_blank" rel="noopener noreferrer">Report Repository</a>
             </div>
           </article>
         ))}

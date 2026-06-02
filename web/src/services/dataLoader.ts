@@ -5,39 +5,56 @@ import type { TimelineEvent } from '../types/TimelineEvent';
 import type { Metadata } from '../types/Metadata';
 import type { ReportData } from '../types/ReportData';
 
-// Vite handles importing JSON files directly
 import leverageEventsData from '../../../data/leverage-events.json';
 import projectsData from '../../../data/projects.json';
 import timelineData from '../../../data/timeline.json';
-import metricsData from '../../../generated/metrics-derived.json';
 import metadataData from '../../../data/metadata.json';
 
-export const getLeverageEvents = (): LeverageEvent[] => {
-  return leverageEventsData as LeverageEvent[];
-};
+export const getLeverageEvents = (): LeverageEvent[] =>
+  leverageEventsData as LeverageEvent[];
 
-export const getProjects = (): Project[] => {
-  return projectsData as Project[];
-};
+export const getProjects = (): Project[] =>
+  projectsData as Project[];
 
-export const getTimelineEvents = (): TimelineEvent[] => {
-  return timelineData as TimelineEvent[];
-};
+export const getTimelineEvents = (): TimelineEvent[] =>
+  timelineData as TimelineEvent[];
+
+export const getMetadata = (): Metadata =>
+  metadataData as Metadata;
 
 export const getDerivedMetrics = (): Metric => {
-  return metricsData as Metric;
-};
+  const events   = getLeverageEvents();
+  const projects = getProjects();
 
-export const getMetadata = (): Metadata => {
-  return metadataData as Metadata;
-};
+  const categories: Record<string, number> = {};
+  for (const event of events) {
+    const cat = event.category ?? 'Unknown';
+    categories[cat] = (categories[cat] ?? 0) + 1;
+  }
 
-export const getReportData = (): ReportData => {
+  const technologies: Record<string, number> = {};
+  for (const project of projects) {
+    for (const tech of project.technologies ?? []) {
+      technologies[tech] = (technologies[tech] ?? 0) + 1;
+    }
+  }
+
   return {
-    events: getLeverageEvents(),
-    projects: getProjects(),
-    timeline: getTimelineEvents(),
-    metrics: getDerivedMetrics(),
-    metadata: getMetadata()
+    summary: {
+      total_leverage_events:    events.length,
+      total_projects:           projects.length,
+      unique_categories_count:  Object.keys(categories).length,
+      unique_technologies_count: Object.keys(technologies).length,
+    },
+    categories,
+    technologies,
   };
 };
+
+export const getReportData = (): ReportData => ({
+  events:   getLeverageEvents(),
+  projects: getProjects(),
+  timeline: getTimelineEvents(),
+  metrics:  getDerivedMetrics(),
+  metadata: getMetadata(),
+});

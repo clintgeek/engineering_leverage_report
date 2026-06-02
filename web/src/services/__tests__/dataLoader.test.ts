@@ -17,14 +17,14 @@ describe('dataLoader', () => {
     expect(firstEvent).toHaveProperty('leverage');
   });
 
-  it('should load projects list containing GeekSuite and geekPR', () => {
+  it('should load projects list containing GeekSuite, geekPR, and This Report', () => {
     const projects = getProjects();
     expect(Array.isArray(projects)).toBe(true);
-    expect(projects.length).toBeGreaterThan(0);
 
     const projectNames = projects.map(p => p.name);
     expect(projectNames).toContain('GeekSuite');
     expect(projectNames).toContain('geekPR');
+    expect(projectNames).toContain('This Report');
   });
 
   it('should retrieve correctly computed derived metrics from build output without strict count coupling', () => {

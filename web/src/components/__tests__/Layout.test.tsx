@@ -80,7 +80,8 @@ describe('Charts (Evidence section)', () => {
   it('renders all OBSERVED_OUTCOMES entries from the shared constant', () => {
     render(<Charts />);
     for (const item of OBSERVED_OUTCOMES) {
-      expect(screen.getByText(String(item.value))).toBeDefined();
+      // Use getAllByText since values like 3 can appear more than once
+      expect(screen.getAllByText(String(item.value)).length).toBeGreaterThan(0);
       expect(screen.getByText(item.label)).toBeDefined();
     }
   });
@@ -99,17 +100,19 @@ describe('Charts (Evidence section)', () => {
 describe('ExecutiveSummary', () => {
   it('renders Observation, Evidence, and Implication sections', () => {
     render(<ExecutiveSummary />);
-    expect(screen.getByText('Observation')).toBeDefined();
-    expect(screen.getByText('Evidence')).toBeDefined();
-    expect(screen.getByText('Implication')).toBeDefined();
+    // Use role queries to avoid ambiguity — section title is h2, article headings are h3
+    expect(screen.getByRole('heading', { level: 2, name: 'Observation' })).toBeDefined();
+    expect(screen.getByRole('heading', { level: 3, name: 'Evidence' })).toBeDefined();
+    expect(screen.getByRole('heading', { level: 3, name: 'Implication' })).toBeDefined();
   });
 });
 
 describe('WorkflowMethodology', () => {
   it('renders all four workflow document files', () => {
     render(<WorkflowMethodology />);
+    // THE_CONTEXT.md appears in both the file tree and the excerpt header — assert at least one
     for (const name of ['THE_PLAN.md', 'THE_ARCHITECTURE.md', 'THE_STEPS.md', 'THE_CONTEXT.md']) {
-      expect(screen.getByText(name)).toBeDefined();
+      expect(screen.getAllByText(name).length).toBeGreaterThan(0);
     }
   });
 });
@@ -125,12 +128,11 @@ describe('LeverageEvents', () => {
 });
 
 describe('Projects', () => {
-  it('renders project name and all three link labels', () => {
+  it('renders project name and Portfolio and Source Code links', () => {
     render(<Projects projects={MOCK_PROJECTS} />);
     expect(screen.getByText('Mock Project')).toBeDefined();
     expect(screen.getByRole('link', { name: 'Portfolio' })).toBeDefined();
     expect(screen.getByRole('link', { name: 'Source Code' })).toBeDefined();
-    expect(screen.getByRole('link', { name: 'Report Repository' })).toBeDefined();
   });
 
   it('Portfolio link points to websiteUrl', () => {
