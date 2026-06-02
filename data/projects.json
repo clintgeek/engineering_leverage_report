@@ -5,7 +5,7 @@
     "description": "Multi-application platform built using AI-assisted development workflows.",
     "technologies": ["React", "TypeScript", "Node.js", "Docker", "PostgreSQL"],
     "githubUrl": "https://github.com/clintgeek/GeekSuite",
-    "websiteUrl": "https://geeksuite.clintgeek.com"
+    "websiteUrl": ""
   },
   {
     "id": "geekpr",
